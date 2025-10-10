@@ -68,9 +68,9 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($students as $stu)
+            @foreach ($students as $key => $stu)
             <tr>
-              <td>{{$stu->id}}</td>
+              <td>{{ $key + 1 }}</td>
               <td>{{$stu->name}}</td>
               <td>{{$stu->roll}}</td>
               <td>{{$stu->email}}</td>
