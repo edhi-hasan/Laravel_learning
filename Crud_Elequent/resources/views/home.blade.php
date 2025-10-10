@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRUD Operation - Bootstrap</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light py-5">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <!-- Title -->
+        <h2 class="text-center mb-4">CRUD Using Eloquent ORM</h2>
+
+        <!-- Form Section -->
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0 text-center">Add Student</h5>
+          </div>
+          <div class="card-body">
+            <form id="userForm" action="" method="POST">
+              @csrf
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name"  name='name' placeholder="Enter name">
+                </div>
+                <div class="col-md-6">
+                  <label for="email"  class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name='email' placeholder="Enter email">
+                </div>
+                <div class="col-md-6">
+                  <label for="city"  class="form-label">City</label>
+                  <input type="text" class="form-control" id="city" name='city' placeholder="Enter city">
+                </div>
+                <div class="col-md-6">
+                  <label for="age" class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" name='age' placeholder="Enter age">
+                </div>
+              </div>
+
+              <div class="mt-4 text-end">
+                <button type="submit" class="btn btn-success px-4">Save</button>
+                <button type="reset" class="btn btn-secondary px-4">Clear</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h5 class="mb-0 text-center">Student List</h5>
+          </div>
+          <div class="card-body p-0">
+            <table class="table table-striped mb-0 align-middle">
+              <thead class="table-dark text-center">
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>City</th>
+                  <th>Age</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="userTable" class="text-center">
+                @foreach ($student as $stu)
+                  <tr>
+                    <td>{{$stu->id}}</td>
+                    <td>{{$stu->name}}</td>
+                    <td>{{$stu->email}}</td>
+                    <td>{{$stu->city}}</td>
+                    <td>{{$stu->age}}</td>
+                    <td>
+                      <a href="{{url('/edit',$stu->id)}}"><button class="btn btn-sm btn-primary me-1">Edit</button></a>
+                      <a href="{{url('/delete',$stu->id)}}"><button class="btn btn-sm btn-danger">Delete</button></a>
+                    </td>
+                  </tr>
+                @endforeach
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
